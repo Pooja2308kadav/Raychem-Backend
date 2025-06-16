@@ -265,7 +265,7 @@ const authMiddleware = async (req, res, next) => {
       return next();
     }
 
-    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET|| "letsdoit");
     req.user = decoded;
     console.log(`User authenticated: ${decoded.id}`);
     next();

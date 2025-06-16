@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
     await inquiry.save();
 
     // Send email to admin
-    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminEmail = process.env.ADMIN_EMAIL|| "kadavp0@gmail.com";
     const subject = `New Inquiry from ${name}`;
     const text = `
       New Inquiry Received:

@@ -18,7 +18,7 @@ const signup = async (req, res) => {
     const user = new User({ name, email, password: hashedPassword, role });
     await user.save();
 
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || "letsdoit", { expiresIn: '7d' });
     res.status(201).json({ 
       token, 
       role: user.role,
@@ -48,7 +48,7 @@ const login = async (req, res) => {
     }
 
     // Include role in JWT token
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET|| "letsdoit", { expiresIn: '7d' });
     
     // Return role in response
     res.status(200).json({ 
